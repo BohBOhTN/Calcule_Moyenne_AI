@@ -21,3 +21,11 @@ def get_response_from_api(link,path):
     return response
 
 
+#GET THE BLOCK WE GONNA LOOP THROUGH
+
+def get_the_main_block(response):
+    data = response.text
+    parse_json = json.loads(data)
+    list_predictions = parse_json['result'][0]['prediction']
+    return list_predictions
+
