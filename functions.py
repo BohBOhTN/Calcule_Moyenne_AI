@@ -29,3 +29,17 @@ def get_the_main_block(response):
     list_predictions = parse_json['result'][0]['prediction']
     return list_predictions
 
+#EXTRACTING DATA FROM THE MAIN BLOCK OF DATA  
+
+def extract_data_to_lists(list_predictions=list,Module=list,Evaluation=list,Note=list):
+    for i in list_predictions:
+        for j in i['cells']:
+            if (j['label']=='Matiere'):
+                Module.append(j['text'])
+            elif (j['label']=='Type'):
+                Evaluation.append(j['text'])
+            elif (j['label']=='Note'):
+                Note.append(j['text'])
+
+
+
