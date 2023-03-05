@@ -42,4 +42,9 @@ def extract_data_to_lists(list_predictions=list,Module=list,Evaluation=list,Note
                 Note.append(j['text'])
 
 
+#MAKING A DATAFRAM FROM LISTS
+
+def make_dataframe_with_lists(Module, Evaluation,Note):
+    df = pd.DataFrame(list(zip(Module,Evaluation,Note)),columns=["Module","Evaluation","Note"])
+    return df
 
