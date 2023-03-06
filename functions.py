@@ -48,3 +48,17 @@ def make_dataframe_with_lists(Module, Evaluation,Note):
     df = pd.DataFrame(list(zip(Module,Evaluation,Note)),columns=["Module","Evaluation","Note"])
     return df
 
+
+images_uploaded_link = ['Screenshot_20230305_190131_iit.jpg','Screenshot_20230305_190138_iit.jpg','Screenshot_20230305_190144_iit.jpg']
+#PROCESS ALL IMAGES
+link_api = 'https://app.nanonets.com/api/v2/OCR/Model/8e075f0c-ba58-451c-8f28-af3f1fda66d9/LabelFile/?async=false'
+def process_all_images(images_links):
+    for links in images_links:
+        image_file_path = ('./images/'+links)
+        response = get_response_from_api(image_file_path,link_api)
+        list_predictions = get_the_main_block(response)
+        extract_data_to_lists(list_predictions,Module_list,Evaluation_list,Note_list)
+        dataframe = make_dataframe_with_lists(Module_list,Evaluation_list,Note_list)
+        print(dataframe)
+
+process_all_images(images_uploaded_link)
